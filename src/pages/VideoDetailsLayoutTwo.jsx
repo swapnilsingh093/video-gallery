@@ -3,7 +3,7 @@ import {
   Play, ArrowLeft, ThumbsUp, ThumbsDown, Heart, Bookmark, Share2, 
   Download, Flag, CheckCircle2, Star, Eye, Calendar, Clock, 
   MessageSquare, Send, ChevronDown, ChevronUp, Check, Sparkles, 
-  Layers, Volume2, ShieldCheck, Layout
+  Volume2, VolumeX, ShieldCheck, Layout, RefreshCw, Radio
 } from 'lucide-react';
 
 export default function VideoDetailsLayoutTwo({
@@ -22,11 +22,23 @@ export default function VideoDetailsLayoutTwo({
   const [showShareToast, setShowShareToast] = useState(false);
   const [showFlagToast, setShowFlagToast] = useState(false);
   const [isDescExpanded, setIsDescExpanded] = useState(false);
+  
+  // Audio Muted state for guaranteed browser autoplay compliance
+  const [isMuted, setIsMuted] = useState(true);
+
+  // Faphouse Next Video Autoplay countdown state
   const [autoplayNext, setAutoplayNext] = useState(true);
+  const [isCountdownActive, setIsCountdownActive] = useState(false);
+  const [countdownSeconds, setCountdownSeconds] = useState(5);
+
   const [commentSort, setCommentSort] = useState('top');
   const [newCommentText, setNewCommentText] = useState('');
 
-  // Tube-style comments state
+  // Related videos & Next video in queue
+  const relatedVideos = allVideos.filter(v => v.id !== video.id);
+  const nextVideo = relatedVideos[0] || allVideos[0];
+
+  // Comments state
   const [commentsList, setCommentsList] = useState(video.comments || [
     {
       id: "c1",
@@ -46,17 +58,47 @@ export default function VideoDetailsLayoutTwo({
     }
   ]);
 
-  const videoRef = useRef(null);
-
+  // Reset state on video change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setHasLiked(false);
     setHasDisliked(false);
     setIsDescExpanded(false);
+    setIsCountdownActive(false);
+    setCountdownSeconds(5);
     if (video.comments && video.comments.length > 0) {
       setCommentsList(video.comments);
     }
   }, [video.id]);
+
+  // Autoplay Countdown Timer Effect
+  useEffect(() => {
+    let interval;
+    if (isCountdownActive) {
+      interval = setInterval(() => {
+        setCountdownSeconds((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            setIsCountdownActive(false);
+            onSelectVideo(nextVideo);
+            return 5;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isCountdownActive, nextVideo, onSelectVideo]);
+
+  const handleTriggerCountdown = () => {
+    setCountdownSeconds(5);
+    setIsCountdownActive(true);
+  };
+
+  const handleCancelCountdown = () => {
+    setIsCountdownActive(false);
+    setCountdownSeconds(5);
+  };
 
   const handleLike = () => {
     if (!hasLiked) {
@@ -108,9 +150,10 @@ export default function VideoDetailsLayoutTwo({
     }
   };
 
-  const relatedVideos = allVideos
-    .filter(v => v.id !== video.id)
-    .slice(0, 10);
+  // Vimeo video ID (fallback to 76979871 if missing)
+  const vimeoId = video.vimeoId || '76979871';
+  // Vimeo embed URL with guaranteed autoplay parameters
+  const vimeoEmbedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=${isMuted ? 1 : 0}&autopause=0&color=6366f1&title=0&byline=0&portrait=0&badge=0`;
 
   return (
     <div className="faphouse-details-container" id="faphouse-video-details">
@@ -139,7 +182,7 @@ export default function VideoDetailsLayoutTwo({
         </div>
 
         <div className="faphouse-nav-right">
-          <span className="faphouse-quality-badge">4K ULTRA HD • 60 FPS</span>
+          <span className="faphouse-quality-badge">VIMEO 4K • 60 FPS</span>
           {onSwitchToDetailsLayout1 && (
             <button
               type="button"
@@ -165,33 +208,32 @@ export default function VideoDetailsLayoutTwo({
           {/* Main 16:9 Video Player Deck */}
           <div className="faphouse-player-frame">
             <div className="player-aspect-wrapper">
-              {video.type === 'mp4' ? (
-                <video
-                  ref={videoRef}
-                  key={video.id}
-                  src={video.url}
-                  controls
-                  autoPlay
-                  playsInline
-                  poster={video.thumbnail}
-                  className="faphouse-native-player"
-                  id="faphouse-video-element"
-                />
-              ) : (
-                <iframe
-                  key={video.id}
-                  src={`${video.url}?autoplay=1&rel=0`}
-                  title={video.title}
-                  className="faphouse-iframe-player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+              <iframe
+                key={`${video.id}-${isMuted ? 'muted' : 'unmuted'}`}
+                src={vimeoEmbedUrl}
+                title={video.title}
+                className="faphouse-iframe-player"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+
+              {/* Floating Unmute Control for Autoplay Sound Toggle */}
+              {isMuted && (
+                <button
+                  type="button"
+                  className="faphouse-unmute-overlay-btn"
+                  onClick={() => setIsMuted(false)}
+                  title="Click to enable sound"
+                >
+                  <VolumeX size={16} />
+                  <span>Autoplaying Muted • Click to Unmute Sound 🔊</span>
+                </button>
               )}
             </div>
 
-            {/* Video Overlays */}
+            {/* Top-Right Watermark */}
             <div className="player-corner-watermark">
-              <span className="wm-pro">4K</span>
+              <span className="wm-pro">VIMEO 4K</span>
               <span className="wm-tag">PRO STREAM</span>
             </div>
           </div>
@@ -262,30 +304,18 @@ export default function VideoDetailsLayoutTwo({
                 <span>{isWatchlisted ? 'Favorited' : 'Favorite'}</span>
               </button>
 
-              {/* Download Master Button */}
-              {video.type === 'mp4' ? (
-                <a
-                  href={video.url}
-                  download
-                  target="_blank"
-                  rel="noreferrer"
-                  className="fap-action-btn download-btn"
-                  title="Download in 4K"
-                >
-                  <Download size={16} />
-                  <span>Download</span>
-                  <span className="dl-badge">4K</span>
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  className="fap-action-btn download-btn"
-                  onClick={handleShare}
-                >
-                  <Download size={16} />
-                  <span>Download</span>
-                </button>
-              )}
+              {/* Download / Vimeo Link */}
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noreferrer"
+                className="fap-action-btn download-btn"
+                title="Open in Vimeo HD"
+              >
+                <Download size={16} />
+                <span>Download</span>
+                <span className="dl-badge">4K</span>
+              </a>
 
               {/* Share Button */}
               <button
@@ -314,7 +344,7 @@ export default function VideoDetailsLayoutTwo({
             {showShareToast && (
               <div className="fap-toast-alert success">
                 <Check size={15} />
-                <span>Video stream URL copied to clipboard!</span>
+                <span>Vimeo stream URL copied to clipboard!</span>
               </div>
             )}
 
@@ -347,7 +377,7 @@ export default function VideoDetailsLayoutTwo({
                   <span className="dot">•</span>
                   <span>48 Releases</span>
                   <span className="dot">•</span>
-                  <span className="rank-text">Top 1% Creator</span>
+                  <span className="rank-text">Top 1% Studio</span>
                 </div>
               </div>
             </div>
@@ -378,9 +408,9 @@ export default function VideoDetailsLayoutTwo({
             <div className="tags-title">Tags & Niches:</div>
             <div className="tags-pill-row">
               <span className="fap-tag-pill highlight">#{video.category}</span>
-              <span className="fap-tag-pill">#4K Ultra HD</span>
+              <span className="fap-tag-pill">#Vimeo4K</span>
               <span className="fap-tag-pill">#High Definition</span>
-              {(video.tags || ["CGI", "SciFi", "Blender", "StudioMaster", "60FPS"]).map((tag, idx) => (
+              {(video.tags || ["CGI", "SciFi", "VimeoStaffPick", "StudioMaster", "60FPS"]).map((tag, idx) => (
                 <span key={idx} className="fap-tag-pill">#{tag}</span>
               ))}
               <span className="fap-tag-pill">#Dolby Atmos</span>
@@ -396,13 +426,12 @@ export default function VideoDetailsLayoutTwo({
               {isDescExpanded && (
                 <div className="desc-extra-info">
                   <p>
-                    Produced and rendered using open-source visual pipeline tools in DCI-P3 wide color space. 
-                    Includes uncompressed spatial sound design, stereoscopic depth maps, and dynamic lighting rendering.
+                    Streamed in direct high-bitrate 4K via Vimeo Pro CDN. Features master audio mastering, DCI-P3 wide color space, and uncompressed stereoscopic depth.
                   </p>
                   <div className="desc-meta-table">
-                    <div className="meta-cell"><span>Resolution:</span> 3840 x 2160 (4K UHD)</div>
+                    <div className="meta-cell"><span>Player:</span> Vimeo Embedded 4K Pro</div>
                     <div className="meta-cell"><span>Aspect Ratio:</span> 16:9 Standard Wide</div>
-                    <div className="meta-cell"><span>Encoding:</span> H.264 / AAC 320kbps</div>
+                    <div className="meta-cell"><span>Audio:</span> Stereo / AAC 320kbps</div>
                     <div className="meta-cell"><span>Content Rating:</span> All Audiences</div>
                   </div>
                 </div>
@@ -505,63 +534,180 @@ export default function VideoDetailsLayoutTwo({
         </div>
 
         {/* ===================================================================
-            RIGHT COLUMN (SECONDARY): Faphouse Related / Up Next Sidebar
+            RIGHT COLUMN (SECONDARY): FAPHOUSE "NEXT PLAY VIDEO BOX" & QUEUE
             =================================================================== */}
         <aside className="faphouse-sidebar-col">
-          {/* Sidebar Header with Autoplay Toggle */}
-          <div className="faphouse-sidebar-header">
-            <h3 className="sidebar-section-heading">Up Next & Related Videos</h3>
-            <div className="autoplay-toggle-wrapper">
-              <span className="autoplay-label">Autoplay</span>
-              <button
-                type="button"
-                className={`autoplay-switch ${autoplayNext ? 'on' : 'off'}`}
-                onClick={() => setAutoplayNext(!autoplayNext)}
-                aria-label="Toggle Autoplay"
-              >
-                <span className="switch-handle"></span>
-              </button>
+          {/* ===============================================================
+              FAPHOUSE SIGNATURE "UP NEXT / NEXT PLAY" HERO BOX
+              =============================================================== */}
+          <div className="faphouse-next-hero-box" id="faphouse-next-play-box">
+            {/* Header with Pulsing Indicator and Autoplay Toggle */}
+            <div className="next-hero-header">
+              <div className="next-badge-group">
+                <span className="pulse-beacon-red"></span>
+                <span className="next-heading-text">UP NEXT VIDEO</span>
+              </div>
+
+              <div className="next-autoplay-toggle">
+                <span className="autoplay-label-mini">Autoplay</span>
+                <button
+                  type="button"
+                  className={`fap-switch-toggle ${autoplayNext ? 'active' : ''}`}
+                  onClick={() => {
+                    setAutoplayNext(!autoplayNext);
+                    if (autoplayNext) {
+                      setIsCountdownActive(false);
+                    }
+                  }}
+                  aria-label="Toggle Autoplay Next"
+                >
+                  <span className="switch-knob"></span>
+                </button>
+              </div>
+            </div>
+
+            {/* Main Next Video Preview Card */}
+            <div 
+              className="next-card-wrapper"
+              onClick={() => onSelectVideo(nextVideo)}
+              role="button"
+              tabIndex={0}
+            >
+              {/* Thumbnail with Countdown Bar */}
+              <div className="next-thumb-container">
+                <img src={nextVideo.thumbnail} alt={nextVideo.title} className="next-preview-img" />
+                <span className="next-duration-chip">{nextVideo.duration}</span>
+                <span className="next-res-chip">{nextVideo.badge || '4K'}</span>
+
+                {/* Animated Play Hover Bubble */}
+                <div className="next-hover-veil">
+                  <div className="next-play-bubble">
+                    <Play fill="#fff" size={20} />
+                  </div>
+                  <span className="next-bubble-text">
+                    {isCountdownActive ? `Starting in ${countdownSeconds}s...` : 'PLAY NEXT'}
+                  </span>
+                </div>
+
+                {/* Live Countdown Progress Bar (Faphouse Autoplay style) */}
+                {isCountdownActive && (
+                  <div className="countdown-progress-track">
+                    <div 
+                      className="countdown-progress-fill"
+                      style={{ width: `${(countdownSeconds / 5) * 100}%` }}
+                    ></div>
+                  </div>
+                )}
+              </div>
+
+              {/* Next Video Info Details */}
+              <div className="next-details-body">
+                <h4 className="next-card-title">{nextVideo.title}</h4>
+
+                <div className="next-card-creator">
+                  <span>{nextVideo.channel.name}</span>
+                  {nextVideo.channel.verified && (
+                    <CheckCircle2 size={13} className="verified-blue-mini" />
+                  )}
+                </div>
+
+                <div className="next-card-stats">
+                  <span className="stat-v">{nextVideo.views} views</span>
+                  <span className="dot">•</span>
+                  <span className="stat-r">99% Rating ★</span>
+                </div>
+
+                {/* Action CTA Buttons */}
+                <div className="next-card-actions-row">
+                  <button
+                    type="button"
+                    className="next-play-cta-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelectVideo(nextVideo);
+                    }}
+                  >
+                    <Play size={13} fill="#0f172a" />
+                    <span>Play Next Now</span>
+                  </button>
+
+                  {isCountdownActive ? (
+                    <button
+                      type="button"
+                      className="next-cancel-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCancelCountdown();
+                      }}
+                    >
+                      Cancel ({countdownSeconds}s)
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="next-timer-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleTriggerCountdown();
+                      }}
+                      title="Test 5-Second Autoplay Countdown"
+                    >
+                      <RefreshCw size={12} />
+                      <span>5s Timer</span>
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Continuous Vertical Stack of Horizontal Cards */}
-          <div className="faphouse-related-list">
-            {relatedVideos.map((item) => (
-              <article
-                key={item.id}
-                className="fap-related-card"
-                onClick={() => onSelectVideo(item)}
-              >
-                {/* Thumbnail Frame */}
-                <div className="fap-card-thumb-frame">
-                  <img src={item.thumbnail} alt={item.title} loading="lazy" />
-                  <span className="fap-thumb-duration">{item.duration}</span>
-                  <span className="fap-thumb-quality">{item.badge || 'HD'}</span>
+          {/* ===============================================================
+              MORE RELATED VIDEOS QUEUE (VERTICAL LIST)
+              =============================================================== */}
+          <div className="faphouse-related-section">
+            <div className="related-section-header">
+              <h4>Related Screenings</h4>
+              <span className="related-count">{relatedVideos.length} Videos</span>
+            </div>
 
-                  <div className="fap-thumb-hover-overlay">
-                    <div className="fap-mini-play-bubble">
-                      <Play fill="#fff" size={15} />
+            <div className="faphouse-related-list">
+              {relatedVideos.slice(1, 10).map((item) => (
+                <article
+                  key={item.id}
+                  className="fap-related-card"
+                  onClick={() => onSelectVideo(item)}
+                >
+                  {/* Thumbnail Frame */}
+                  <div className="fap-card-thumb-frame">
+                    <img src={item.thumbnail} alt={item.title} loading="lazy" />
+                    <span className="fap-thumb-duration">{item.duration}</span>
+                    <span className="fap-thumb-quality">VIMEO 4K</span>
+
+                    <div className="fap-thumb-hover-overlay">
+                      <div className="fap-mini-play-bubble">
+                        <Play fill="#fff" size={15} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Card Content */}
-                <div className="fap-card-info">
-                  <h4 className="fap-card-title">{item.title}</h4>
-                  <div className="fap-card-author">
-                    <span>{item.channel.name}</span>
-                    {item.channel.verified && (
-                      <CheckCircle2 size={12} className="card-verified-mini" />
-                    )}
+                  {/* Card Content */}
+                  <div className="fap-card-info">
+                    <h5 className="fap-card-title">{item.title}</h5>
+                    <div className="fap-card-author">
+                      <span>{item.channel.name}</span>
+                      {item.channel.verified && (
+                        <CheckCircle2 size={12} className="card-verified-mini" />
+                      )}
+                    </div>
+                    <div className="fap-card-stats-line">
+                      <span>{item.views} views</span>
+                      <span className="dot">•</span>
+                      <span className="fap-pct-rating">98% ★</span>
+                    </div>
                   </div>
-                  <div className="fap-card-stats-line">
-                    <span>{item.views} views</span>
-                    <span className="dot">•</span>
-                    <span className="fap-pct-rating">98% ★</span>
-                  </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </aside>
       </div>

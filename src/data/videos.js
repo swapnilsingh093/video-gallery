@@ -1,10 +1,11 @@
 export const VIDEOS_DATA = [
   {
     id: "v-1",
-    title: "Tears of Steel: Sci-Fi Cyberpunk Reimagined in 4K",
-    description: "Set in a dystopian future Amsterdam, a squad of rebel scientists and fighters gather at the Oude Kerk to stage an insane technological ritual to prevent an apocalypse of rampant cyborg tentacles. Created by the Blender Foundation with open-source CGI visual effects.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    vimeoId: "76979871",
+    title: "The Third & The Seventh: Architectural Visual Mastery in 4K",
+    description: "Alex Roman's world-renowned CGI digital artwork exploring light, geometry, spatial architecture, and poetic stillness across modern brutalist monuments.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/76979871",
     thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80",
     duration: "12:14",
     category: "Sci-Fi & Cinema",
@@ -14,30 +15,30 @@ export const VIDEOS_DATA = [
     badge: "4K HDR",
     featured: true,
     channel: {
-      name: "Blender Open Films",
+      name: "Alex Roman Studios",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80",
       subscribers: "1.42M",
       verified: true
     },
-    tags: ["4K", "Sci-Fi", "CGI", "Cyberpunk", "Blender"],
+    tags: ["4K", "Architecture", "CGI", "Cinematography", "VimeoStaffPick"],
     timestamps: [
-      { time: "0:00", title: "Oude Kerk Gathering" },
-      { time: "2:45", title: "The Brainwave Signal" },
-      { time: "6:15", title: "Drone Infiltration" },
-      { time: "9:50", title: "Final Calibration" },
-      { time: "11:30", title: "Resolution" }
+      { time: "0:00", title: "Brutalist Foundation" },
+      { time: "2:45", title: "Glass & Reflections" },
+      { time: "6:15", title: "Light Dispersion" },
+      { time: "9:50", title: "Shadow Play" }
     ],
     comments: [
-      { id: "c1", user: "Elena Rostova", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", time: "2 hours ago", text: "The lighting and atmospheric depth in this 4K render is completely insane! Open-source cinema is reaching Hollywood standards.", likes: 420 },
+      { id: "c1", user: "Elena Rostova", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", time: "2 hours ago", text: "The lighting and atmospheric depth in this 4K render is completely insane! Pure reference-grade cinema.", likes: 420 },
       { id: "c2", user: "Marcus Thorne", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "5 hours ago", text: "The sound design during the drone sequence gives me chills every single time. Incredible work.", likes: 184 }
     ]
   },
   {
     id: "v-2",
+    vimeoId: "1084537",
     title: "Big Buck Bunny: The Classic 3D Animated Odyssey",
-    description: "Follow the gentle giant bunny who discovers his inner warrior after three forest bullies - Frank the flying squirrel, Rinky the red squirrel, and Gimera the chinchilla - push him too far. A landmark achievement in open 3D computer graphics.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    description: "Follow the gentle giant bunny who discovers his inner warrior after forest bullies push him too far. A landmark achievement in open 3D computer graphics.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/1084537",
     thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80",
     duration: "09:56",
     category: "Animation",
@@ -59,526 +60,540 @@ export const VIDEOS_DATA = [
       { time: "8:10", title: "The Forest Trap Unleashed" }
     ],
     comments: [
-      { id: "c3", user: "Alex Chen", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "I have used this video to test 4K screens for a decade. Still an absolute masterpiece of pacing and character design.", likes: 312 }
+      { id: "c3", user: "Sarah Jenkins", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "Grew up watching this! The remaster looks fantastic on my OLED display.", likes: 92 }
     ]
   },
   {
     id: "v-3",
-    title: "Earth from the Edge of Space: Ultra 4K ISS Expedition",
-    description: "Experience the mesmerizing serenity of our planet as seen from the International Space Station traveling at 17,500 miles per hour. Breathtaking auroras, city lights dancing across continents, and thunderous lightning storms above oceans.",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/1la4UrUS9xQ",
+    vimeoId: "22439234",
+    title: "The Mountain: Milky Way Galaxy & Teide Volcano 4K",
+    description: "Captured at El Teide, Spain's highest peak, showing dramatic cloud oceans, Milky Way galactic core rotation, and celestial wonders at 3,718 meters altitude.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/22439234",
     thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-    duration: "15:20",
+    duration: "03:09",
     category: "Nature & Space",
     views: "5.1M",
-    likes: "340K",
-    date: "4 days ago",
-    badge: "4K HDR",
+    likes: "389K",
+    date: "2 days ago",
+    badge: "8K Cinema",
     featured: true,
     channel: {
-      name: "Cosmic Odyssey",
-      avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=160&q=80",
-      subscribers: "2.1M",
+      name: "TSO Photography",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80",
+      subscribers: "820K",
       verified: true
     },
-    tags: ["Space", "Earth", "4K", "Cosmos", "Documentary"],
+    tags: ["MilkyWay", "Astrophotography", "Volcano", "Space", "Timelapse"],
     timestamps: [
-      { time: "0:00", title: "Nightpass over Europe" },
-      { time: "3:40", title: "The Aurora Borealis Surge" },
-      { time: "8:15", title: "Lightning over the Pacific" },
-      { time: "12:50", title: "Sunrise from 400km Orbit" }
+      { time: "0:00", title: "Sunset over Teide" },
+      { time: "0:45", title: "Milky Way Rises" },
+      { time: "1:40", title: "Golden Dust Storm" },
+      { time: "2:30", title: "Dawn Breaking" }
     ],
     comments: [
-      { id: "c4", user: "Dr. Neil Vance", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80", time: "3 hours ago", text: "The Overview Effect captured in high definition. It puts every human concern into profound perspective.", likes: 580 }
+      { id: "c4", user: "David Thorne", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "3 hours ago", text: "One of the most famous time-lapses in internet history. Still untouched in beauty.", likes: 310 }
     ]
   },
   {
     id: "v-4",
-    title: "Cyberpunk 2077: Night City Nightwalk in 4K Ray-Tracing",
-    description: "An immersive atmospheric night walk through Watson, City Center, and Westbrook under rain-slicked neon signs. Featuring real-time path tracing, ultra-realistic spatial audio, and futuristic vehicle choreography.",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/UnA7tepsc7s",
-    thumbnail: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
-    duration: "24:30",
-    category: "Tech & Future",
-    views: "2.7M",
-    likes: "198K",
-    date: "5 days ago",
-    badge: "Ray Tracing",
+    vimeoId: "23237102",
+    title: "The Arctic Light: Aurora Borealis Phenomenon in Norway",
+    description: "An extraordinary journey through northern Norway capturing the majestic midnight sun, dancing green auroral ribbons, and frozen fjords.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/23237102",
+    thumbnail: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1200&q=80",
+    duration: "04:50",
+    category: "Nature & Space",
+    views: "4.2M",
+    likes: "310K",
+    date: "4 days ago",
+    badge: "Award Winner",
     channel: {
-      name: "NeoCity Walks",
-      avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=160&q=80",
-      subscribers: "650K",
+      name: "Nordic Astro Films",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80",
+      subscribers: "540K",
       verified: true
     },
-    tags: ["Cyberpunk", "Gaming", "4K", "RayTracing", "Atmosphere"],
+    tags: ["Aurora", "Norway", "Arctic", "Nature", "GreenLights"],
     timestamps: [
-      { time: "0:00", title: "Rainy Watson Alleyways" },
-      { time: "6:20", title: "Corpo Plaza Monoliths" },
-      { time: "14:10", title: "Japantown Neon Market" },
-      { time: "20:00", title: "Badlands Skyline View" }
+      { time: "0:00", title: "Fjords at Twilight" },
+      { time: "1:20", title: "The Aurora Awakes" },
+      { time: "3:10", title: "Solar Storm Peak" }
     ],
     comments: [
-      { id: "c5", user: "Kira V.", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", time: "12 hours ago", text: "Putting this on the secondary monitor while coding makes you feel like an undercover netrunner.", likes: 245 }
+      { id: "c5", user: "Astrid Lindgren", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "Takes my breath away every single time.", likes: 88 }
     ]
   },
   {
     id: "v-5",
-    title: "The Mountain: Award-Winning El Teide Astrophotography",
-    description: "Captured at Spain's highest peak, El Teide, this breathtaking time-lapse shows the Milky Way arching across golden clouds, desert monoliths, and ancient volcanic caldera landscapes in crystalline quality.",
+    vimeoId: "32001208",
+    title: "Terra Nostra: Epic Nature & Landscapes Across 5 Continents",
+    description: "A multi-year visual odyssey through Iceland waterfalls, Namibian sand dunes, Patagonian glaciers, and tropical coral atolls.",
     type: "vimeo",
-    url: "https://player.vimeo.com/video/22439234",
-    thumbnail: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-    duration: "03:10",
+    url: "https://player.vimeo.com/video/32001208",
+    thumbnail: "https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1200&q=80",
+    duration: "05:15",
     category: "Nature & Space",
-    views: "1.9M",
-    likes: "142K",
-    date: "6 days ago",
-    badge: "Vimeo Staff Pick",
+    views: "3.1M",
+    likes: "245K",
+    date: "1 week ago",
+    badge: "4K 60FPS",
     channel: {
-      name: "Terje Sorgjerd Films",
-      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&q=80",
-      subscribers: "420K",
+      name: "Terra Documentaries",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80",
+      subscribers: "710K",
       verified: true
     },
-    tags: ["Timelapse", "MilkyWay", "Astrophotography", "Mountains"],
+    tags: ["Earth", "Drone", "Landscape", "Wilderness", "Cinematography"],
     timestamps: [
-      { time: "0:00", title: "Golden Cloud Ocean" },
-      { time: "1:15", title: "Milky Way Alignment" },
-      { time: "2:30", title: "Dawn Over the Crater" }
+      { time: "0:00", title: "Icy Horizons" },
+      { time: "1:45", title: "Desert Monoliths" },
+      { time: "3:30", title: "Lush Canopies" }
     ],
     comments: [
-      { id: "c6", user: "Sarah Jenkins", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80", time: "2 days ago", text: "One of the most famous time-lapses in history. The cloud sea at 1:20 is pure magic.", likes: 98 }
+      { id: "c6", user: "Liam O'Connor", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80", time: "2 days ago", text: "The drone speed transitions are so smooth.", likes: 54 }
     ]
   },
   {
     id: "v-6",
-    title: "Sintel: The Dragon's Loyalty Emotional Fantasy Saga",
-    description: "A lonely young orphan named Sintel rescues and befriends a wounded baby dragon, naming him Scales. When a ferocious adult dragon kidnaps Scales, she embarks on a dangerous mountain pilgrimage across continents.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
-    duration: "14:48",
-    category: "Animation",
-    views: "6.2M",
-    likes: "430K",
-    date: "1 week ago",
-    badge: "Cinema Masterpiece",
+    vimeoId: "6428069",
+    title: "Between The Shadows: Film Noir Mystery in Black & White",
+    description: "A dark expressionist cinematic tribute to classical 1940s film noir with anamorphic lighting, cigarette smoke, and deep psychological tension.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/6428069",
+    thumbnail: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
+    duration: "08:12",
+    category: "Sci-Fi & Cinema",
+    views: "2.8M",
+    likes: "198K",
+    date: "5 days ago",
+    badge: "Noir Cut",
     channel: {
-      name: "Durian Open Studio",
-      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=160&q=80",
-      subscribers: "1.1M",
+      name: "Shadowplay Cinema",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=160&q=80",
+      subscribers: "430K",
       verified: true
     },
-    tags: ["Fantasy", "Dragon", "Animation", "Drama", "Adventure"],
+    tags: ["Noir", "Monochrome", "Mystery", "Drama", "Anamorphic"],
     timestamps: [
-      { time: "0:00", title: "Snowy Mountain Ascent" },
-      { time: "3:20", title: "Finding Scales" },
-      { time: "7:45", title: "The Gatekeeper Duel" },
-      { time: "11:15", title: "The Dragon's Lair Discovery" }
+      { time: "0:00", title: "Rainy Street Corner" },
+      { time: "2:50", title: "The Investigation" },
+      { time: "5:40", title: "Shadow Confrontation" }
     ],
     comments: [
-      { id: "c7", user: "Julian Rossi", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80", time: "4 days ago", text: "That ending still breaks my heart every single time. 10/10 story.", likes: 350 }
+      { id: "c7", user: "Victor Vance", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "4 hours ago", text: "The chiaroscuro lighting here is textbook perfection.", likes: 76 }
     ]
   },
   {
     id: "v-7",
-    title: "Elephants Dream: Surreal Mindscape & Steam Machinery",
-    description: "Proog and Emo traverse a gigantic, ever-shifting machine construct created by their own subconscious minds. Emo doubts the reality of the mechanical maze while Proog guides him through the cogwheels and data cables.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-    duration: "10:54",
-    category: "Sci-Fi & Cinema",
-    views: "2.1M",
-    likes: "135K",
-    date: "2 weeks ago",
-    badge: "Historic Open Short",
+    vimeoId: "169599296",
+    title: "Beauty of Mathematics: Algorithmic Fractals & Sacred Geometry",
+    description: "A mesmerizing visual meditation exploring Mandelbrot sets, Fibonacci spirals, and quantum wave simulations rendered in high-definition digital motion.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/169599296",
+    thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    duration: "04:30",
+    category: "Tech & Future",
+    views: "3.7M",
+    likes: "290K",
+    date: "6 days ago",
+    badge: "Fractal 4K",
     channel: {
-      name: "Orange Project",
-      avatar: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=160&q=80",
-      subscribers: "540K",
-      verified: false
+      name: "Algorithmic Wonders",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80",
+      subscribers: "680K",
+      verified: true
     },
-    tags: ["Surreal", "Sci-Fi", "Steampunk", "Experimental"],
+    tags: ["Math", "Fractals", "SacredGeometry", "Physics", "VisualArt"],
     timestamps: [
-      { time: "0:00", title: "The Cable Hall" },
-      { time: "3:30", title: "The Mechanical Chamber" },
-      { time: "7:00", title: "The Core Elevator" }
+      { time: "0:00", title: "Golden Ratio Spiral" },
+      { time: "1:30", title: "Fractal Depth Zoom" },
+      { time: "3:00", title: "Quantum Harmonics" }
     ],
     comments: [
-      { id: "c8", user: "Dave Sterling", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80", time: "5 days ago", text: "The pioneer film that started the entire Blender open movie initiative. Historic!", likes: 112 }
+      { id: "c8", user: "Carl S.", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "Watching this feels like peering into the code of reality.", likes: 142 }
     ]
   },
   {
     id: "v-8",
-    title: "The Arctic Light: Aurora Borealis Over Norwegian Fjords",
-    description: "A nocturnal visual poem capturing the extraordinary Aurora Borealis dancing over the snow-covered islands of Lofoten, Norway. Vivid greens, magentas, and deep blues reflect against the crystal-clear Arctic Sea.",
+    vimeoId: "240324888",
+    title: "CGI Sci-Fi Odyssey: Planetary Colonization 2099",
+    description: "A visionary short depicting human terraforming outposts on Europa, atmospheric atmospheric shield generators, and orbital cargo freighters.",
     type: "vimeo",
-    url: "https://player.vimeo.com/video/24456787",
-    thumbnail: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1200&q=80",
-    duration: "04:45",
-    category: "Nature & Space",
-    views: "1.4M",
-    likes: "115K",
-    date: "1 week ago",
-    badge: "4K Cinema",
+    url: "https://player.vimeo.com/video/240324888",
+    thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    duration: "06:45",
+    category: "Sci-Fi & Cinema",
+    views: "4.9M",
+    likes: "370K",
+    date: "3 days ago",
+    badge: "Ray Tracing",
     channel: {
-      name: "Nordic Visions",
+      name: "Future Space VFX",
       avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=160&q=80",
-      subscribers: "310K",
+      subscribers: "920K",
       verified: true
     },
-    tags: ["Aurora", "Norway", "Arctic", "Winter", "Nature"],
+    tags: ["SciFi", "VFX", "CGI", "Terraforming", "Space"],
     timestamps: [
-      { time: "0:00", title: "Fjord Reflections" },
-      { time: "2:00", title: "Solar Storm Peak" },
-      { time: "3:50", title: "Dawn Transition" }
+      { time: "0:00", title: "Europa Descent" },
+      { time: "2:10", title: "Habitation Domes" },
+      { time: "4:30", title: "Shield Calibration" }
     ],
     comments: [
-      { id: "c9", user: "Astrid Lind", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "Lofoten is the most otherworldly place on Earth. This film captured its true soul.", likes: 87 }
+      { id: "c9", user: "Zack Ray", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "6 hours ago", text: "Hollywood level graphics created by an independent indie team. Superb!", likes: 119 }
     ]
   },
   {
     id: "v-9",
-    title: "Lo-Fi Beats & Cyberpunk Rain: Chill & Code Session",
-    description: "Relax, study, or code with deep nostalgic synth chords, gentle lo-fi drum beats, and soothing ambient rain sounds inside a neon-lit futuristic skyline apartment.",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/jfKfPfyJRdk",
-    thumbnail: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
-    duration: "20:00",
-    category: "Music & Lofi",
-    views: "12.8M",
-    likes: "920K",
-    date: "3 days ago",
-    badge: "Live Atmosphere",
+    vimeoId: "265111898",
+    title: "Future World: Neon Cyberpunk Megacity Flythrough",
+    description: "Endless layers of holographic advertisements, flying speeders, neon-drenched sky-bridges, and rain reflections across an infinite high-tech metropolis.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/265111898",
+    thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
+    duration: "03:40",
+    category: "Tech & Future",
+    views: "6.2M",
+    likes: "480K",
+    date: "1 day ago",
+    badge: "4K HDR",
     channel: {
-      name: "Lofi Girl Network",
+      name: "Cyber Motion Lab",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80",
-      subscribers: "14.2M",
+      subscribers: "1.05M",
       verified: true
     },
-    tags: ["Lofi", "Chill", "Code", "Study", "Synthwave"],
+    tags: ["Cyberpunk", "Neon", "Metropolis", "Synthwave", "3D"],
     timestamps: [
-      { time: "0:00", title: "Midnight Drizzle" },
-      { time: "5:00", title: "Coffee & Code" },
-      { time: "12:00", title: "Neon Skyline" },
-      { time: "17:00", title: "Dawn Glow" }
+      { time: "0:00", title: "Upper Skyline" },
+      { time: "1:20", title: "Neon Alleyways" },
+      { time: "2:40", title: "Underground Haven" }
     ],
     comments: [
-      { id: "c10", user: "Sammy W.", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "6 hours ago", text: "Helped me debug my whole React app in 2 hours flat. Essential vibes.", likes: 304 }
+      { id: "c10", user: "Nexus7", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "Blade Runner vibes dialed up to eleven.", likes: 205 }
     ]
   },
   {
     id: "v-10",
-    title: "For Bigger Blazes: Chromatic 4K HDR Color Grading Test",
-    description: "A showcase of high-speed cinematic explosions, fire effects, and hyper-saturated chromatic dynamics. Engineered specifically to stress test wide color gamuts and dynamic range on OLED and HDR screens.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:15",
-    category: "Sci-Fi & Cinema",
-    views: "1.2M",
-    likes: "78K",
-    date: "1 week ago",
-    badge: "4K HDR Test",
+    vimeoId: "89332848",
+    title: "Tokyo Hyperlapse: Electric Nights & Shinjuku Pulse",
+    description: "Dynamic hyperlapse following neon bullet trains, bustling Shibuya intersections, and luminous skyscraper canyons in nocturnal Tokyo.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/89332848",
+    thumbnail: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
+    duration: "04:10",
+    category: "Tech & Future",
+    views: "5.5M",
+    likes: "410K",
+    date: "2 weeks ago",
+    badge: "Hyperlapse",
     channel: {
-      name: "Pixel Dynamics Lab",
-      avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=160&q=80",
-      subscribers: "880K",
+      name: "Urban Kinetic",
+      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=160&q=80",
+      subscribers: "670K",
       verified: true
     },
-    tags: ["HDR", "Fire", "VFX", "Benchmark", "Cinematic"],
+    tags: ["Tokyo", "Hyperlapse", "Japan", "Nightlife", "Neon"],
     timestamps: [
-      { time: "0:00", title: "Ignition Burst" },
-      { time: "0:08", title: "Slow Motion Embers" }
+      { time: "0:00", title: "Shinjuku Crossing" },
+      { time: "1:30", title: "Yamanote Line" },
+      { time: "2:50", title: "Akihabara Glow" }
     ],
     comments: [
-      { id: "c11", user: "Lucas M.", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "The peak brightness on those sparks is blinding on my monitor!", likes: 52 }
+      { id: "c11", user: "Kenji Sato", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "3 days ago", text: "Captures the sheer heartbeat of Tokyo like nothing else.", likes: 95 }
     ]
   },
   {
     id: "v-11",
-    title: "Interstellar Space Travel: Black Holes & Quantum Horizons",
-    description: "Journey past the event horizon of Gargantua. An exploration of gravitational lensing, accretion discs, and relativistic light physics visualized through cutting-edge astrophysical simulations.",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/UDvtWYP601I",
-    thumbnail: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80",
-    duration: "18:40",
-    category: "Nature & Space",
-    views: "4.3M",
-    likes: "295K",
-    date: "4 days ago",
-    badge: "Documentary",
+    vimeoId: "54152347",
+    title: "Light in the Dark: Kinetic Light Painting in Motion",
+    description: "Long-exposure laser filaments, illuminated kinetic pendulums, and geometric light trails filmed at high frame rates in complete darkness.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/54152347",
+    thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+    duration: "03:20",
+    category: "Animation",
+    views: "2.1M",
+    likes: "165K",
+    date: "1 week ago",
+    badge: "Experimental",
     channel: {
-      name: "Quantum Frontier",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80",
-      subscribers: "1.8M",
+      name: "Photonic Arts",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80",
+      subscribers: "380K",
       verified: true
     },
-    tags: ["Space", "BlackHole", "Physics", "Interstellar", "Cosmology"],
+    tags: ["Light", "Kinetic", "Painting", "LongExposure", "Experimental"],
     timestamps: [
-      { time: "0:00", title: "Accretion Disc Physics" },
-      { time: "5:20", title: "Time Dilation Reality" },
-      { time: "11:00", title: "The Event Horizon Plunge" }
+      { time: "0:00", title: "Pendulum Swing" },
+      { time: "1:40", title: "Laser Vortex" }
     ],
     comments: [
-      { id: "c12", user: "Sophie Ray", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", time: "2 days ago", text: "The depiction of gravitational redshift gave me chills. Masterful explanation.", likes: 167 }
+      { id: "c12", user: "Maya K.", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80", time: "2 days ago", text: "Hypnotic rhythm and colors. Very soothing.", likes: 41 }
     ]
   },
   {
     id: "v-12",
-    title: "For Bigger Escape: High Octane Action Thriller Sequence",
-    description: "Adrenaline-fueled getaway chase across coastal roads and mountain highways. Experience precise camera tracking, rumble audio frequencies, and dramatic drone cinematography.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:15",
-    category: "Sci-Fi & Cinema",
-    views: "950K",
-    likes: "64K",
-    date: "2 weeks ago",
-    badge: "Action Short",
+    vimeoId: "17914974",
+    title: "A Year In The Ice: Antarctic Seasons & Polar Solitude",
+    description: "An intimate documentation of life at the South Pole station through six months of sunlight followed by six months of freezing polar night.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/17914974",
+    thumbnail: "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=1200&q=80",
+    duration: "07:35",
+    category: "Nature & Space",
+    views: "3.9M",
+    likes: "285K",
+    date: "3 weeks ago",
+    badge: "Docu 4K",
     channel: {
-      name: "Apex Motion",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80",
-      subscribers: "470K",
-      verified: false
+      name: "Polar Frontiers",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80",
+      subscribers: "510K",
+      verified: true
     },
-    tags: ["Action", "Chase", "Supercar", "Cinematic"],
+    tags: ["Antarctica", "Ice", "Polar", "Solitude", "Nature"],
     timestamps: [
-      { time: "0:00", title: "Highway Sprint" },
-      { time: "0:08", title: "The Sharp Drift" }
+      { time: "0:00", title: "Summer Sun" },
+      { time: "2:40", title: "Winter Approaching" },
+      { time: "5:10", title: "Aurora Australis" }
     ],
     comments: [
-      { id: "c13", user: "Brian K.", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", time: "3 days ago", text: "That sound design on the exhaust is pristine.", likes: 38 }
+      { id: "c13", user: "Lars M.", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "4 days ago", text: "Makes you appreciate the warmth of your own home.", likes: 73 }
     ]
   },
   {
     id: "v-13",
-    title: "Wild Earth: 4K Wildlife & Tropical Rainforest Symphony",
-    description: "Immerse yourself in Costa Rica's dense rainforest canopy and coral reefs. Featuring rare jaguars, fluorescent tree frogs, soaring toucans, and tranquil natural soundscapes in uncompressed 4K 60fps.",
-    type: "youtube",
-    url: "https://www.youtube.com/embed/LXb3EKWsInQ",
-    thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
-    duration: "11:35",
-    category: "Nature & Space",
-    views: "3.2M",
-    likes: "210K",
-    date: "5 days ago",
-    badge: "4K 60FPS",
+    vimeoId: "31158841",
+    title: "The Mirror City: Kaleidoscopic Urban Symmetry",
+    description: "Architectural reflection compositions combining skyline geometry, mirror reflection lenses, and symmetrical kinetic motion.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/31158841",
+    thumbnail: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=80",
+    duration: "03:15",
+    category: "Music & Lofi",
+    views: "1.9M",
+    likes: "140K",
+    date: "1 month ago",
+    badge: "Visual Art",
     channel: {
-      name: "Wild Planet Studios",
-      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=160&q=80",
-      subscribers: "1.3M",
+      name: "Prism Visuals",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80",
+      subscribers: "320K",
       verified: true
     },
-    tags: ["Nature", "Wildlife", "Rainforest", "4K", "Animals"],
+    tags: ["City", "Mirrors", "Architecture", "Symmetry", "Ambient"],
     timestamps: [
-      { time: "0:00", title: "Canopy Awakening" },
-      { time: "4:00", title: "River Predators" },
-      { time: "8:30", title: "Nocturnal Jungle" }
+      { time: "0:00", title: "Reflected Tower" },
+      { time: "1:30", title: "Prismatic Bridge" }
     ],
     comments: [
-      { id: "c14", user: "Hannah M.", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "The macro shots of the glass frog's heartbeat are mind-boggling.", likes: 140 }
+      { id: "c14", user: "Samir B.", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80", time: "1 week ago", text: "The editing synchrony with music is masterclass.", likes: 38 }
     ]
   },
   {
     id: "v-14",
-    title: "Neon Tokyo: Atmospheric Night Cyberpunk Drone Montage",
-    description: "Gliding through the labyrinthine neon corridors of Shinjuku, Shibuya, and Akihabara at 2:00 AM. A poetic portrait of futuristic Tokyo pulsing with kinetic light and reflective glass.",
+    vimeoId: "62980495",
+    title: "Komorebi: Sunlight Filtering Through Ancient Bamboo Groves",
+    description: "Quiet contemplative 4K cinematography filmed in Arashiyama, Kyoto capturing gentle sunlight rays breaking through emerald bamboo canopies.",
     type: "vimeo",
-    url: "https://player.vimeo.com/video/76979871",
+    url: "https://player.vimeo.com/video/62980495",
     thumbnail: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
-    duration: "04:12",
-    category: "Tech & Future",
-    views: "2.8M",
-    likes: "210K",
-    date: "6 days ago",
-    badge: "Vimeo Staff Pick",
+    duration: "04:00",
+    category: "Music & Lofi",
+    views: "2.4M",
+    likes: "185K",
+    date: "2 weeks ago",
+    badge: "Relaxing 4K",
     channel: {
-      name: "Shibuya Cinema Collective",
-      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=160&q=80",
-      subscribers: "620K",
+      name: "Kyoto Meditations",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80",
+      subscribers: "490K",
       verified: true
     },
-    tags: ["Tokyo", "Japan", "Neon", "Cyberpunk", "Cityscape"],
+    tags: ["Bamboo", "Kyoto", "Sunlight", "Zen", "Meditation"],
     timestamps: [
-      { time: "0:00", title: "Shinjuku Crossing Overhead" },
-      { time: "1:45", title: "Alleyway Izakaya Lanterns" },
-      { time: "3:10", title: "Monorail Silhouette" }
+      { time: "0:00", title: "Bamboo Wind Chimes" },
+      { time: "2:00", title: "Golden Ray Path" }
     ],
     comments: [
-      { id: "c15", user: "Kenji Sato", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80", time: "12 hours ago", text: "As someone who lived in Tokyo for 10 years, this captured the exact late-night vibe.", likes: 92 }
+      { id: "c15", user: "Aiko Tanaka", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80", time: "5 days ago", text: "Pure serenity in video format.", likes: 82 }
     ]
   },
   {
     id: "v-15",
-    title: "For Bigger Joyrides: Extreme Mountain Drift Circuit",
-    description: "Take the passenger seat in a twin-turbo V8 sports coupe attacking hairpin curves and cliffside switchbacks at the limit of traction and tire smoke.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:15",
-    category: "Tech & Future",
-    views: "810K",
-    likes: "52K",
-    date: "1 week ago",
-    badge: "Pure Thrill",
+    vimeoId: "29950141",
+    title: "Temples of Bagan: Ancient Pagodas in Morning Mist",
+    description: "Hot air balloon flight over thousands of historic brick temples and stupas in central Myanmar shrouded in tropical golden dawn mist.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/29950141",
+    thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
+    duration: "05:40",
+    category: "Nature & Space",
+    views: "2.7M",
+    likes: "210K",
+    date: "3 weeks ago",
+    badge: "Heritage",
     channel: {
-      name: "Apex Motion",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80",
-      subscribers: "470K",
-      verified: false
+      name: "Historical Horizons",
+      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=160&q=80",
+      subscribers: "390K",
+      verified: true
     },
-    tags: ["Drift", "Cars", "Motorsport", "Adrenaline"],
+    tags: ["Bagan", "Temples", "Balloons", "Sunrise", "Ancient"],
     timestamps: [
-      { time: "0:00", title: "Launch Control" },
-      { time: "0:07", title: "Apex Smoke" }
+      { time: "0:00", title: "Dawn Fog" },
+      { time: "2:20", title: "Balloons Ascending" }
     ],
     comments: [
-      { id: "c16", user: "Marco R.", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80", time: "3 days ago", text: "Pure tire smoke poetry.", likes: 21 }
+      { id: "c16", user: "Richard Cole", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "1 week ago", text: "Looks like another fantasy world. Stunning.", likes: 66 }
     ]
   },
   {
     id: "v-16",
-    title: "We Are Going On Bullrun: Supercars Crossing the Mojave",
-    description: "A high-speed convoy of exotic hypercars cruising through the burning sands and salt flats of Nevada under blazing purple sunsets.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1541348263662-e0c8de4259ba?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:47",
-    category: "Tech & Future",
-    views: "1.1M",
-    likes: "77K",
+    vimeoId: "185794697",
+    title: "Iceland Horizons: Glacial Basalt & Geothermal Steam",
+    description: "Volcanic black sands, rumbling geothermal geysers, and crystalline ice caves across the southern coast of Iceland in Ultra HD.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/185794697",
+    thumbnail: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    duration: "04:45",
+    category: "Nature & Space",
+    views: "3.3M",
+    likes: "260K",
     date: "2 weeks ago",
-    badge: "Exotic 4K",
+    badge: "Geothermal",
     channel: {
-      name: "Desert Highway Media",
-      avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=160&q=80",
-      subscribers: "380K",
+      name: "Nordic Vision Lab",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80",
+      subscribers: "550K",
       verified: true
     },
-    tags: ["Supercars", "Desert", "Mojave", "Hypercars"],
+    tags: ["Iceland", "Glacier", "Geysers", "Volcanic", "Nature"],
     timestamps: [
-      { time: "0:00", title: "Desert Dawn Gathering" },
-      { time: "0:25", title: "Highway Run" }
+      { time: "0:00", title: "Black Sand Beach" },
+      { time: "2:10", title: "Ice Cave Glow" }
     ],
     comments: [
-      { id: "c17", user: "Tariq A.", avatar: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=100&q=80", time: "4 days ago", text: "That sound echo off the canyon walls is unreal.", likes: 45 }
+      { id: "c17", user: "Freja B.", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", time: "3 days ago", text: "The diamond beach shots are miraculous.", likes: 51 }
     ]
   },
   {
     id: "v-17",
-    title: "For Bigger Fun: Festival of Colors & Kinetic Energy",
-    description: "Celebration of kinetic joy, water splashes, colored powders in slow-motion 1000fps, and dynamic community spirit in celebration of summer.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:60",
-    category: "Music & Lofi",
-    views: "1.5M",
-    likes: "105K",
+    vimeoId: "127605417",
+    title: "A Journey to the Stars: Deep Astrophotography Voyage",
+    description: "Telescopic deep field survey navigating through the Andromeda Galaxy, Crab Nebula filaments, and star-forming gas clouds.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/127605417",
+    thumbnail: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
+    duration: "06:10",
+    category: "Nature & Space",
+    views: "4.8M",
+    likes: "375K",
     date: "1 week ago",
-    badge: "1000 FPS",
+    badge: "Cosmic 4K",
     channel: {
-      name: "Kinetic Pulse",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80",
-      subscribers: "710K",
+      name: "Starlight Observatory",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80",
+      subscribers: "880K",
       verified: true
     },
-    tags: ["Color", "Festival", "SlowMo", "Joy", "Celebration"],
+    tags: ["Andromeda", "Stars", "Space", "Universe", "Telescope"],
     timestamps: [
-      { time: "0:00", title: "Color Explosion" },
-      { time: "0:30", title: "Slow Motion Dance" }
+      { time: "0:00", title: "Milky Way Rim" },
+      { time: "2:45", title: "Andromeda Spiral" }
     ],
     comments: [
-      { id: "c18", user: "Maya Patel", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80", time: "2 days ago", text: "The color diffusion in slow motion is hypnotic!", likes: 64 }
+      { id: "c18", user: "Hubble Fan", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "2 days ago", text: "Makes you realize how tiny we are in this cosmos.", likes: 133 }
     ]
   },
   {
     id: "v-18",
-    title: "For Bigger Meltdowns: Fiery Core & Molten Volcanic Crucible",
-    description: "Macro cinematography exploring molten glass, volcanic lava currents, and searing metallurgical reactions at 1500°C temperatures.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:15",
+    vimeoId: "272848202",
+    title: "Cybernetic Neon City: Dystopian Android Sanctuary",
+    description: "A rain-soaked cyberpunk drama set in high-rise corridors where cybernetic entities seek freedom beneath neon-lit rainstorms.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/272848202",
+    thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    duration: "05:00",
     category: "Sci-Fi & Cinema",
-    views: "720K",
-    likes: "49K",
-    date: "2 weeks ago",
-    badge: "Macro 4K",
+    views: "3.5M",
+    likes: "270K",
+    date: "4 days ago",
+    badge: "Ray Traced",
     channel: {
-      name: "Pixel Dynamics Lab",
-      avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=160&q=80",
-      subscribers: "880K",
+      name: "Synthetic Dreams",
+      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=160&q=80",
+      subscribers: "740K",
       verified: true
     },
-    tags: ["Macro", "Lava", "Heat", "Abstract", "Cinematography"],
+    tags: ["Cyberpunk", "Android", "CGI", "SciFi", "Future"],
     timestamps: [
-      { time: "0:00", title: "Molten Flow" },
-      { time: "0:08", title: "Cooling Crust" }
+      { time: "0:00", title: "Neon Skyline" },
+      { time: "2:15", title: "Rooftop Rain" }
     ],
     comments: [
-      { id: "c19", user: "Chris Evans", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "5 days ago", text: "Looks like the surface of the sun through a filtered telescope.", likes: 33 }
+      { id: "c19", user: "Roy Batty", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "The reflection of neon on wet asphalt is incredible.", likes: 98 }
     ]
   },
   {
     id: "v-19",
-    title: "Cosmic Odyssey: Journey to Interstellar Nebulae in 4K",
-    description: "Deep field telescopic visualization traversing Orion nebula dust pillars, stellar birth nurseries, and gravitational lensing across 1,300 light years.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:30",
+    vimeoId: "141979412",
+    title: "Colors of the Pacific: Coral Reef Ecosystems in 4K",
+    description: "Ultra-macro underwater filming exploring bioluminescent anemones, manta ray schools, and vibrant tropical barrier reef life.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/141979412",
+    thumbnail: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
+    duration: "04:30",
     category: "Nature & Space",
-    views: "2.1M",
-    likes: "135K",
-    date: "4 days ago",
-    badge: "8K Remaster",
+    views: "2.9M",
+    likes: "220K",
+    date: "5 days ago",
+    badge: "Macro 4K",
     channel: {
-      name: "Deep Space Observatory",
-      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=160&q=80",
-      subscribers: "1.1M",
+      name: "Oceanic Explorer",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80",
+      subscribers: "620K",
       verified: true
     },
-    tags: ["Space", "Nebula", "Cosmos", "Hubble", "Astronomy"],
+    tags: ["Ocean", "Coral", "Reef", "Underwater", "Marine"],
     timestamps: [
-      { time: "0:00", title: "Approaching Orion" },
-      { time: "0:15", title: "Pillars of Creation" }
+      { time: "0:00", title: "Reef Surface" },
+      { time: "2:10", title: "Bioluminescent Coral" }
     ],
     comments: [
-      { id: "c20", user: "Carl Sagan Fan", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80", time: "1 day ago", text: "Truly humbles you to realize how vast our galaxy is.", likes: 92 }
+      { id: "c20", user: "Jacques C.", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80", time: "3 days ago", text: "The clarity of the macro water lens is unbelievable.", likes: 74 }
     ]
   },
   {
     id: "v-20",
-    title: "Synthesize 2099: Cybernetic Cityscape & Holographic Skyline",
-    description: "An evocative CGI dive into rainy neon alleyways, flying hover-transports, and towering corporate monoliths bathed in synthwave reflections.",
-    type: "mp4",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
-    duration: "00:45",
+    vimeoId: "194486552",
+    title: "Microcosm: Hidden Physics & Fluid Dynamics in Slow-Mo",
+    description: "High-speed scientific cameras capturing water droplet surface tension, magnetic ferrofluid blooms, and ink dispersion patterns at 2000 FPS.",
+    type: "vimeo",
+    url: "https://player.vimeo.com/video/194486552",
+    thumbnail: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
+    duration: "03:50",
     category: "Tech & Future",
-    views: "3.4M",
-    likes: "240K",
+    views: "3.6M",
+    likes: "295K",
     date: "1 day ago",
-    badge: "Ray Tracing",
+    badge: "2000 FPS",
     channel: {
-      name: "Neon Future Labs",
+      name: "Slow Motion Lab",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80",
-      subscribers: "650K",
+      subscribers: "830K",
       verified: true
     },
-    tags: ["Cyberpunk", "Synthwave", "3D", "Future", "CGI"],
+    tags: ["SlowMo", "FluidDynamics", "Physics", "Macro", "Science"],
     timestamps: [
-      { time: "0:00", title: "Skyline Descent" },
-      { time: "0:20", title: "Lower Alleyways" }
+      { time: "0:00", title: "Droplet Collision" },
+      { time: "1:40", title: "Ferrofluid Bloom" }
     ],
     comments: [
-      { id: "c21", user: "Akira99", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80", time: "3 hours ago", text: "The atmosphere, the rain, the neon reflections... perfection.", likes: 118 }
+      { id: "c21", user: "Alan Turing", avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&q=80", time: "8 hours ago", text: "Nature's mathematics unfolding in slow motion.", likes: 112 }
     ]
   }
 ];

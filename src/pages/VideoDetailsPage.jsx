@@ -136,31 +136,15 @@ export default function VideoDetailsPage({
             <div className="player-ambient-glow" style={{ backgroundImage: `url(${video.thumbnail})` }}></div>
             
             <div className="video-viewport-frame">
-              {video.type === 'mp4' ? (
-                <video
-                  ref={videoPlayerRef}
-                  key={video.id}
-                  src={video.url}
-                  controls
-                  autoPlay
-                  playsInline
-                  poster={video.thumbnail}
-                  className="native-html5-player"
-                  id="html5-video-player"
-                >
-                  Your browser does not support HTML5 video playback.
-                </video>
-              ) : (
-                <iframe
-                  key={video.id}
-                  src={`${video.url}?autoplay=1&rel=0`}
-                  title={video.title}
-                  className="embedded-iframe-player"
-                  id="embedded-video-player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
-              )}
+              <iframe
+                key={video.id}
+                src={`https://player.vimeo.com/video/${video.vimeoId || '76979871'}?autoplay=1&muted=1&autopause=0&color=6366f1`}
+                title={video.title}
+                className="embedded-iframe-player"
+                id="embedded-video-player"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
 

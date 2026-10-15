@@ -29,12 +29,12 @@ export default function Footer({ onCategoryClick }) {
             <span className="logo-title">CINE<span className="logo-highlight">PULSE</span></span>
           </div>
           <p className="footer-tagline">
-            Next-generation 4K cinematic streaming portal powered by open-source creators, Vimeo filmmakers, and YouTube artists.
+            Next-generation 4K cinematic streaming portal powered by open-source creators and Vimeo Pro cinema filmmakers.
           </p>
           <div className="provider-badges">
-            <span className="p-badge mp4-badge">HTML5 4K MP4</span>
+            <span className="p-badge vimeo-badge">Vimeo 4K Pro</span>
             <span className="p-badge vimeo-badge">Vimeo Staff Picks</span>
-            <span className="p-badge yt-badge">YouTube 4K HDR</span>
+            <span className="p-badge dolby-badge">Dolby 5.1 Surround</span>
           </div>
         </div>
 
