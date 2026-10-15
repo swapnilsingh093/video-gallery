@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import GalleryPage from './pages/GalleryPage';
 import GalleryLayoutTwo from './pages/GalleryLayoutTwo';
-import GalleryLayoutThree from './pages/GalleryLayoutThree';
 import VideoDetailsPage from './pages/VideoDetailsPage';
 import VideoDetailsLayoutTwo from './pages/VideoDetailsLayoutTwo';
 import { VIDEOS_DATA } from './data/videos';
@@ -14,11 +12,8 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [showWatchlistOnly, setShowWatchlistOnly] = useState(false);
   
-  // Gallery Layout: 'layout1' | 'layout2' | 'layout3'
-  const [activeLayout, setActiveLayout] = useState('layout3'); // Default to Layout 3 (Latest)
-  
-  // Single Video Details Layout: 'details1' | 'details2'
-  const [detailsLayout, setDetailsLayout] = useState('details2'); // Default to Details Layout 2 (New)
+  // Single Video Details Layout: 'details1' (Cinema) | 'details2' (Faphouse Tube)
+  const [detailsLayout, setDetailsLayout] = useState('details2'); // Default to Faphouse Tube Layout
 
   // Initialize watchlist from localStorage
   const [watchlist, setWatchlist] = useState(() => {
@@ -80,14 +75,20 @@ export default function App() {
         setShowWatchlistOnly={setShowWatchlistOnly}
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
-        activeLayout={activeLayout}
-        setActiveLayout={setActiveLayout}
       />
 
       {/* Floating Single Video Layout Switcher (visible when viewing single video) */}
       {currentVideo && (
         <div className="floating-details-switcher" id="details-layout-switcher">
-          <span className="switcher-hint">Details UI Style:</span>
+          <span className="switcher-hint">Details Style:</span>
+          <button
+            type="button"
+            className={`details-switch-btn ${detailsLayout === 'details2' ? 'active' : ''}`}
+            onClick={() => setDetailsLayout('details2')}
+          >
+            Details Layout 2 (Faphouse Tube)
+            <span className="dot-new">NEW</span>
+          </button>
           <button
             type="button"
             className={`details-switch-btn ${detailsLayout === 'details1' ? 'active' : ''}`}
@@ -95,18 +96,10 @@ export default function App() {
           >
             Details Layout 1 (Classic Cinema)
           </button>
-          <button
-            type="button"
-            className={`details-switch-btn ${detailsLayout === 'details2' ? 'active' : ''}`}
-            onClick={() => setDetailsLayout('details2')}
-          >
-            Details Layout 2 (IMAX Studio)
-            <span className="dot-new">NEW</span>
-          </button>
         </div>
       )}
 
-      {/* Main Page Render */}
+      {/* Main Page Render: ONLY Layout 2 (Zigzag Bento) for Gallery, or Selected Single Video Details */}
       <main className="main-content-flow" id="main-content-flow">
         {currentVideo ? (
           detailsLayout === 'details2' ? (
@@ -129,22 +122,8 @@ export default function App() {
               onToggleWatchlist={handleToggleWatchlist}
             />
           )
-        ) : activeLayout === 'layout3' ? (
-          <GalleryLayoutThree
-            videos={VIDEOS_DATA}
-            onSelectVideo={handleSelectVideo}
-            watchlist={watchlist}
-            onToggleWatchlist={handleToggleWatchlist}
-          />
-        ) : activeLayout === 'layout2' ? (
-          <GalleryLayoutTwo
-            videos={VIDEOS_DATA}
-            onSelectVideo={handleSelectVideo}
-            watchlist={watchlist}
-            onToggleWatchlist={handleToggleWatchlist}
-          />
         ) : (
-          <GalleryPage
+          <GalleryLayoutTwo
             videos={VIDEOS_DATA}
             onSelectVideo={handleSelectVideo}
             watchlist={watchlist}

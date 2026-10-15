@@ -46,43 +46,6 @@ export default function Header({
           </div>
         </div>
 
-        {/* 3 Layout Switcher Pills in Header */}
-        <div className="header-layout-toggle-wrapper">
-          <button
-            type="button"
-            className={`layout-pill-btn ${activeLayout === 'layout1' ? 'active-pill' : ''}`}
-            onClick={() => setActiveLayout('layout1')}
-            title="Layout 1: Explorer Grid"
-            id="layout-1-toggle-btn"
-          >
-            <LayoutGrid size={14} />
-            <span>Layout 1</span>
-          </button>
-          
-          <button
-            type="button"
-            className={`layout-pill-btn ${activeLayout === 'layout2' ? 'active-pill' : ''}`}
-            onClick={() => setActiveLayout('layout2')}
-            title="Layout 2: 3D Stage & Bento"
-            id="layout-2-toggle-btn"
-          >
-            <Sparkles size={14} />
-            <span>Layout 2</span>
-          </button>
-
-          <button
-            type="button"
-            className={`layout-pill-btn ${activeLayout === 'layout3' ? 'active-pill' : ''}`}
-            onClick={() => setActiveLayout('layout3')}
-            title="Layout 3: CineStudio & Masonry Stream"
-            id="layout-3-toggle-btn"
-          >
-            <Sliders size={14} />
-            <span>Layout 3</span>
-            <span className="new-badge-dot">NEW</span>
-          </button>
-        </div>
-
         {/* Search Bar */}
         <div className="search-bar-wrapper">
           <div className="search-input-box">

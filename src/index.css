@@ -4604,3 +4604,1051 @@ button {
   }
 }
 
+/* ==========================================================================
+   FAPHOUSE TUBE-STYLE SINGLE VIDEO DETAILS PAGE (LAYOUT 2)
+   ========================================================================== */
+.faphouse-details-container {
+  max-width: 1720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 24px 60px;
+}
+
+/* Top Navigation Bar */
+.faphouse-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+}
+
+.faphouse-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.faphouse-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.faphouse-back-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(-2px);
+}
+
+.faphouse-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.crumb-root {
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.crumb-root:hover {
+  color: #fff;
+}
+
+.crumb-cat {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.crumb-current {
+  color: #fff;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.crumb-sep {
+  opacity: 0.3;
+}
+
+.faphouse-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.faphouse-quality-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  letter-spacing: 0.5px;
+}
+
+.faphouse-layout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--accent-primary);
+  font-size: 12px;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.faphouse-layout-btn:hover {
+  background: var(--accent-primary);
+  color: #fff;
+}
+
+/* 2-Column Asymmetrical Grid (~74% Left, ~26% Right) */
+.faphouse-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Left Primary Column */
+.faphouse-primary-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 16:9 Video Player Deck */
+.faphouse-player-frame {
+  position: relative;
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.player-aspect-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.faphouse-native-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  outline: none;
+}
+
+.faphouse-iframe-player {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.player-corner-watermark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.wm-pro {
+  background: #f43f5e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.wm-tag {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Video Title & Metrics Card */
+.faphouse-title-card {
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 22px 26px;
+}
+
+.faphouse-video-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.faphouse-metrics-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 18px;
+}
+
+.metrics-left-cluster {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.metric-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metric-pill.rating-pill {
+  color: #fbbf24;
+  font-weight: 800;
+}
+
+.metrics-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.format-tag {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.format-tag.dolby {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+/* Action Toolbar */
+.faphouse-actions-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fap-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.fap-action-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.fap-action-btn.like-btn.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #34d399;
+}
+
+.rating-pct {
+  font-size: 11px;
+  color: #10b981;
+}
+
+.fap-action-btn.dislike-btn.active {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+.fap-action-btn.favorite-btn.active {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: #f43f5e;
+  color: #fb7185;
+}
+
+.fap-action-btn.download-btn {
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+}
+
+.fap-action-btn.download-btn:hover {
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.dl-badge {
+  font-size: 9px;
+  font-weight: 900;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.fap-toast-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  animation: fadeInDown 0.3s ease;
+}
+
+.fap-toast-alert.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.fap-toast-alert.info {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* Creator Profile Card */
+.faphouse-creator-card {
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.creator-profile-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.fap-creator-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+}
+
+.creator-details-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.creator-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.creator-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.creator-verified-icon {
+  color: #38bdf8;
+}
+
+.verified-pill {
+  font-size: 9px;
+  font-weight: 900;
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.creator-stats-line {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.rank-text {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.creator-cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fap-subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  transition: all var(--transition-fast);
+}
+
+.fap-subscribe-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.fap-subscribe-btn.is-subscribed {
+  background: rgba(255, 255, 255, 0.1);
+  color: #34d399;
+  border: 1px solid var(--glass-border);
+}
+
+.fap-vip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 800;
+  transition: all var(--transition-fast);
+}
+
+.fap-vip-btn:hover {
+  background: rgba(245, 158, 11, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Tags & Categories Wrapper */
+.faphouse-tags-wrapper {
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tags-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tags-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fap-tag-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  color: #cbd5e1;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.fap-tag-pill:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: var(--accent-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.fap-tag-pill.highlight {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: #6366f1;
+  color: #fff;
+}
+
+/* Description Card */
+.faphouse-desc-card {
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+.desc-section-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.desc-content {
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.desc-content.clamped p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.desc-extra-info {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.desc-meta-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.meta-cell span {
+  color: #94a3b8;
+  margin-right: 4px;
+}
+
+.desc-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.desc-expand-btn:hover {
+  color: #818cf8;
+}
+
+/* Community Comments */
+.faphouse-comments-card {
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.comments-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.comments-count-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.comment-icon {
+  color: var(--accent-primary);
+}
+
+.comments-sort-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.sort-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.sort-pill.active {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: var(--accent-primary);
+  color: #fff;
+}
+
+.fap-comment-form {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.fap-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-input-cluster {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fap-comment-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.comment-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 8px;
+}
+
+.comment-guideline {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.fap-post-comment-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 18px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  transition: all var(--transition-fast);
+}
+
+.fap-post-comment-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.fap-post-comment-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fap-comments-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fap-comment-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+.comment-author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comment-item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comment-item-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comment-author-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.comment-time-stamp {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.comment-item-text {
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.comment-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.comment-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.comment-action-link:hover {
+  color: #fff;
+}
+
+.reply-link {
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+/* Right Recommendation Column */
+.faphouse-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faphouse-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+}
+
+.sidebar-section-heading {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.autoplay-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.autoplay-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.autoplay-switch {
+  width: 38px;
+  height: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.autoplay-switch.on {
+  background: #10b981;
+}
+
+.switch-handle {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.autoplay-switch.on .switch-handle {
+  transform: translateX(18px);
+}
+
+.faphouse-related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fap-related-card {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background: #0d0f17;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fap-related-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateX(4px);
+}
+
+.fap-card-thumb-frame {
+  position: relative;
+  width: 120px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #000;
+}
+
+.fap-card-thumb-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-fast);
+}
+
+.fap-related-card:hover .fap-card-thumb-frame img {
+  transform: scale(1.08);
+}
+
+.fap-thumb-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.fap-thumb-quality {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #38bdf8;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.fap-thumb-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(99, 102, 241, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.fap-related-card:hover .fap-thumb-hover-overlay {
+  opacity: 1;
+}
+
+.fap-mini-play-bubble {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+}
+
+.fap-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.fap-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--transition-fast);
+}
+
+.fap-related-card:hover .fap-card-title {
+  color: var(--accent-primary);
+}
+
+.fap-card-author {
+  font-size: 11px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-verified-mini {
+  color: #38bdf8;
+}
+
+.fap-card-stats-line {
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fap-pct-rating {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+/* Faphouse Responsive Rules */
+@media (max-width: 1100px) {
+  .faphouse-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .faphouse-sidebar-col {
+    order: 2;
+  }
+  .faphouse-primary-col {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .faphouse-actions-toolbar {
+    flex-wrap: wrap;
+  }
+  .fap-action-btn {
+    flex: 1 1 calc(50% - 10px);
+    justify-content: center;
+  }
+  .creator-profile-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .creator-cta-buttons {
+    width: 100%;
+  }
+  .fap-subscribe-btn, .fap-vip-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .desc-meta-table {
+    grid-template-columns: 1fr;
+  }
+}
+
+

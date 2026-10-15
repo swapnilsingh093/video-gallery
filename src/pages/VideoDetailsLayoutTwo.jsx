@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Play, ArrowLeft, ThumbsUp, ThumbsDown, Share2, Bookmark, CheckCircle2, 
-  Sparkles, Star, Download, Eye, Calendar, Clock, Film, Radio, 
-  Send, MessageSquare, Layers, Volume2, ShieldCheck, Check, Layout
+  Play, ArrowLeft, ThumbsUp, ThumbsDown, Heart, Bookmark, Share2, 
+  Download, Flag, CheckCircle2, Star, Eye, Calendar, Clock, 
+  MessageSquare, Send, ChevronDown, ChevronUp, Check, Sparkles, 
+  Layers, Volume2, ShieldCheck, Layout
 } from 'lucide-react';
 
 export default function VideoDetailsLayoutTwo({
@@ -16,31 +17,32 @@ export default function VideoDetailsLayoutTwo({
 }) {
   const [likesCount, setLikesCount] = useState(parseInt(video.likes) || 214);
   const [hasLiked, setHasLiked] = useState(false);
+  const [hasDisliked, setHasDisliked] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [showShareToast, setShowShareToast] = useState(false);
-  const [activeChapterIdx, setActiveChapterIdx] = useState(0);
+  const [showFlagToast, setShowFlagToast] = useState(false);
+  const [isDescExpanded, setIsDescExpanded] = useState(false);
+  const [autoplayNext, setAutoplayNext] = useState(true);
+  const [commentSort, setCommentSort] = useState('top');
+  const [newCommentText, setNewCommentText] = useState('');
 
-  // Review & Star rating state
-  const [userRating, setUserRating] = useState(5);
-  const [reviewText, setReviewText] = useState('');
-  const [reviewsList, setReviewsList] = useState([
+  // Tube-style comments state
+  const [commentsList, setCommentsList] = useState(video.comments || [
     {
-      id: "r1",
-      author: "Dominic Vance",
+      id: "c1",
+      user: "Dominic Vance",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
-      rating: 5,
-      date: "Yesterday",
-      text: "The audio separation in Dolby Atmos and the contrast gradient in the blacks is reference-grade quality. An absolute benchmark for modern digital cinema.",
-      likes: 89
+      time: "2 hours ago",
+      text: "The lighting and atmospheric depth in this 4K render is completely insane! Pure reference-grade digital cinema.",
+      likes: 420
     },
     {
-      id: "r2",
-      author: "Clara Oswald",
+      id: "c2",
+      user: "Clara Oswald",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
-      rating: 5,
-      date: "3 days ago",
-      text: "The pacing in the middle act completely drew me in. Open-source rendering has surpassed expectations.",
-      likes: 45
+      time: "5 hours ago",
+      text: "The pacing in the middle act completely drew me in. The open-source rendering has surpassed expectations.",
+      likes: 184
     }
   ]);
 
@@ -49,15 +51,33 @@ export default function VideoDetailsLayoutTwo({
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setHasLiked(false);
+    setHasDisliked(false);
+    setIsDescExpanded(false);
+    if (video.comments && video.comments.length > 0) {
+      setCommentsList(video.comments);
+    }
   }, [video.id]);
 
   const handleLike = () => {
     if (!hasLiked) {
       setHasLiked(true);
+      if (hasDisliked) setHasDisliked(false);
       setLikesCount(prev => prev + 1);
     } else {
       setHasLiked(false);
       setLikesCount(prev => prev - 1);
+    }
+  };
+
+  const handleDislike = () => {
+    if (!hasDisliked) {
+      setHasDisliked(true);
+      if (hasLiked) {
+        setHasLiked(false);
+        setLikesCount(prev => prev - 1);
+      }
+    } else {
+      setHasDisliked(false);
     }
   };
 
@@ -67,351 +87,480 @@ export default function VideoDetailsLayoutTwo({
     setTimeout(() => setShowShareToast(false), 3000);
   };
 
-  const handlePostReview = (e) => {
+  const handleFlag = () => {
+    setShowFlagToast(true);
+    setTimeout(() => setShowFlagToast(false), 3000);
+  };
+
+  const handleAddComment = (e) => {
     e.preventDefault();
-    if (reviewText.trim()) {
-      const newRev = {
-        id: `r-${Date.now()}`,
-        author: "Swapnil (Audience Critic)",
+    if (newCommentText.trim()) {
+      const newComment = {
+        id: `c-${Date.now()}`,
+        user: "Swapnil (Viewer)",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
-        rating: userRating,
-        date: "Just now",
-        text: reviewText.trim(),
+        time: "Just now",
+        text: newCommentText.trim(),
         likes: 1
       };
-      setReviewsList([newRev, ...reviewsList]);
-      setReviewText('');
+      setCommentsList([newComment, ...commentsList]);
+      setNewCommentText('');
     }
   };
 
   const relatedVideos = allVideos
     .filter(v => v.id !== video.id)
-    .slice(0, 8);
+    .slice(0, 10);
 
   return (
-    <div className="details-layout-two" id="details-layout-two">
+    <div className="faphouse-details-container" id="faphouse-video-details">
       {/* =====================================================================
-          1. TOP IMAX PANORAMIC CINEMA SCREEN (FULL BLEED)
+          1. TOP NAVIGATION & BREADCRUMB BAR
           ===================================================================== */}
-      <section className="imax-cinema-header" id="imax-player-section">
-        {/* Top Floating Control Deck */}
-        <div className="imax-floating-control-bar">
+      <div className="faphouse-top-nav">
+        <div className="faphouse-nav-left">
           <button 
             type="button" 
-            className="imax-back-btn" 
+            className="faphouse-back-btn" 
             onClick={onBackToGallery}
-            id="imax-back-btn"
+            id="faphouse-back-btn"
           >
             <ArrowLeft size={16} />
-            <span>Catalog</span>
+            <span>Back to Videos</span>
           </button>
 
-          <div className="imax-format-status">
-            <span className="imax-badge">IMAX 4K PREMIERE</span>
-            <span className="imax-dot">•</span>
-            <span className="imax-specs">DCI-P3 10-BIT // DOLBY ATMOS</span>
-          </div>
-
-          <button 
-            type="button" 
-            className="imax-switch-layout-btn"
-            onClick={onSwitchToDetailsLayout1}
-            title="Switch to Details Layout 1"
-          >
-            <Layout size={15} />
-            <span>Switch to Details Layout 1</span>
-          </button>
+          <nav className="faphouse-breadcrumbs" aria-label="Breadcrumb">
+            <span className="crumb-root" onClick={onBackToGallery}>Videos</span>
+            <span className="crumb-sep">/</span>
+            <span className="crumb-cat">{video.category}</span>
+            <span className="crumb-sep">/</span>
+            <span className="crumb-current">{video.title}</span>
+          </nav>
         </div>
 
-        {/* Ambient Halo & Player Container */}
-        <div className="imax-player-frame-container">
-          <div className="imax-ambient-halo" style={{ backgroundImage: `url(${video.thumbnail})` }}></div>
-          
-          <div className="imax-viewport-box">
-            {video.type === 'mp4' ? (
-              <video
-                ref={videoRef}
-                key={video.id}
-                src={video.url}
-                controls
-                autoPlay
-                playsInline
-                poster={video.thumbnail}
-                className="imax-native-video"
-                id="imax-native-video"
-              />
-            ) : (
-              <iframe
-                key={video.id}
-                src={`${video.url}?autoplay=1&rel=0`}
-                title={video.title}
-                className="imax-iframe-video"
-                id="imax-iframe-video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            )}
-          </div>
+        <div className="faphouse-nav-right">
+          <span className="faphouse-quality-badge">4K ULTRA HD • 60 FPS</span>
+          {onSwitchToDetailsLayout1 && (
+            <button
+              type="button"
+              className="faphouse-layout-btn"
+              onClick={onSwitchToDetailsLayout1}
+              title="Switch to Classic Cinema Layout"
+            >
+              <Layout size={14} />
+              <span>Cinema Mode</span>
+            </button>
+          )}
         </div>
-      </section>
+      </div>
 
       {/* =====================================================================
-          2. BOTTOM 3-COLUMN STUDIO CONSOLE
+          2. FAPHOUSE 2-COLUMN ASYMMETRICAL STREAMING GRID
           ===================================================================== */}
-      <div className="studio-console-container">
-        {/* Column 1: Film Tech Specs & Creator Dashboard */}
-        <aside className="studio-col-specs">
-          {/* Creator Profile Box */}
-          <div className="studio-creator-card">
-            <img src={video.channel.avatar} alt={video.channel.name} className="studio-creator-img" />
-            <div className="studio-creator-meta">
-              <div className="studio-name-row">
-                <h4>{video.channel.name}</h4>
-                {video.channel.verified && <CheckCircle2 size={14} className="verified-blue" />}
-              </div>
-              <span className="studio-subs-count">{video.channel.subscribers}</span>
+      <div className="faphouse-main-grid">
+        {/* ===================================================================
+            LEFT COLUMN (PRIMARY): Video Player, Toolbar, Creator & Comments
+            =================================================================== */}
+        <div className="faphouse-primary-col">
+          {/* Main 16:9 Video Player Deck */}
+          <div className="faphouse-player-frame">
+            <div className="player-aspect-wrapper">
+              {video.type === 'mp4' ? (
+                <video
+                  ref={videoRef}
+                  key={video.id}
+                  src={video.url}
+                  controls
+                  autoPlay
+                  playsInline
+                  poster={video.thumbnail}
+                  className="faphouse-native-player"
+                  id="faphouse-video-element"
+                />
+              ) : (
+                <iframe
+                  key={video.id}
+                  src={`${video.url}?autoplay=1&rel=0`}
+                  title={video.title}
+                  className="faphouse-iframe-player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
             </div>
 
-            <button 
-              type="button" 
-              className={`studio-subscribe-btn ${isSubscribed ? 'active' : ''}`}
-              onClick={() => setIsSubscribed(!isSubscribed)}
-            >
-              {isSubscribed ? <Check size={14} /> : <Sparkles size={14} />}
-              <span>{isSubscribed ? 'Subscribed' : 'Follow Studio'}</span>
-            </button>
-          </div>
-
-          {/* Technical Specs Dashboard */}
-          <div className="studio-specs-box">
-            <h5 className="specs-box-heading"><Film size={14} /> Master Screening Specs</h5>
-            <div className="specs-list">
-              <div className="spec-row">
-                <span className="spec-k">Master Resolution</span>
-                <span className="spec-v">3840 x 2160 (4K UHD)</span>
-              </div>
-              <div className="spec-row">
-                <span className="spec-k">Aspect Ratio</span>
-                <span className="spec-v">2.39:1 Anamorphic</span>
-              </div>
-              <div className="spec-row">
-                <span className="spec-k">Sound Mix</span>
-                <span className="spec-v">Dolby Atmos 5.1</span>
-              </div>
-              <div className="spec-row">
-                <span className="spec-k">Color Space</span>
-                <span className="spec-v">DCI-P3 10-Bit HDR</span>
-              </div>
-              <div className="spec-row">
-                <span className="spec-k">Platform Stream</span>
-                <span className="spec-v highlight">{video.type.toUpperCase()} Direct</span>
-              </div>
+            {/* Video Overlays */}
+            <div className="player-corner-watermark">
+              <span className="wm-pro">4K</span>
+              <span className="wm-tag">PRO STREAM</span>
             </div>
           </div>
 
-          {/* Quick Actions Stack */}
-          <div className="studio-actions-stack">
-            <button 
-              type="button" 
-              className={`studio-action-button ${hasLiked ? 'liked' : ''}`}
-              onClick={handleLike}
-            >
-              <ThumbsUp size={16} fill={hasLiked ? 'currentColor' : 'none'} />
-              <span>{likesCount}K Likes</span>
-            </button>
+          {/* Video Title & Metrics Section */}
+          <div className="faphouse-title-card">
+            <h1 className="faphouse-video-title">{video.title}</h1>
 
-            <button 
-              type="button" 
-              className={`studio-action-button ${isWatchlisted ? 'saved' : ''}`}
-              onClick={() => onToggleWatchlist(video.id)}
-            >
-              <Bookmark size={16} fill={isWatchlisted ? 'currentColor' : 'none'} />
-              <span>{isWatchlisted ? 'In Watchlist' : 'Save to Watchlist'}</span>
-            </button>
+            <div className="faphouse-metrics-strip">
+              <div className="metrics-left-cluster">
+                <span className="metric-pill views-pill">
+                  <Eye size={14} />
+                  <span>{video.views} Views</span>
+                </span>
+                <span className="metric-pill rating-pill">
+                  <Star size={13} fill="#fbbf24" color="#fbbf24" />
+                  <span>98.6%</span>
+                </span>
+                <span className="metric-pill duration-pill">
+                  <Clock size={13} />
+                  <span>{video.duration}</span>
+                </span>
+                <span className="metric-pill date-pill">
+                  <Calendar size={13} />
+                  <span>{video.date}</span>
+                </span>
+              </div>
 
-            <button 
-              type="button" 
-              className="studio-action-button"
-              onClick={handleShare}
-            >
-              <Share2 size={16} />
-              <span>Share Premiere</span>
-            </button>
+              <div className="metrics-right-cluster">
+                <span className="format-tag">{video.badge}</span>
+                <span className="format-tag dolby">DOLBY 5.1</span>
+              </div>
+            </div>
 
-            {video.type === 'mp4' && (
-              <a 
-                href={video.url} 
-                download 
-                target="_blank" 
-                rel="noreferrer"
-                className="studio-action-button download-act"
+            {/* Faphouse-Style Interactive Action Toolbar */}
+            <div className="faphouse-actions-toolbar">
+              {/* Like Button */}
+              <button
+                type="button"
+                className={`fap-action-btn like-btn ${hasLiked ? 'active' : ''}`}
+                onClick={handleLike}
+                title="I like this video"
               >
-                <Download size={16} />
-                <span>Download Master</span>
-              </a>
+                <ThumbsUp size={16} fill={hasLiked ? 'currentColor' : 'none'} />
+                <span>{likesCount}K</span>
+                <span className="rating-pct">(98%)</span>
+              </button>
+
+              {/* Dislike Button */}
+              <button
+                type="button"
+                className={`fap-action-btn dislike-btn ${hasDisliked ? 'active' : ''}`}
+                onClick={handleDislike}
+                title="I dislike this"
+              >
+                <ThumbsDown size={16} fill={hasDisliked ? 'currentColor' : 'none'} />
+                <span>3.2K</span>
+              </button>
+
+              {/* Favorite / Watchlist Button */}
+              <button
+                type="button"
+                className={`fap-action-btn favorite-btn ${isWatchlisted ? 'active' : ''}`}
+                onClick={() => onToggleWatchlist(video.id)}
+                title="Add to Favorites"
+              >
+                <Heart size={16} fill={isWatchlisted ? '#f43f5e' : 'none'} color={isWatchlisted ? '#f43f5e' : 'currentColor'} />
+                <span>{isWatchlisted ? 'Favorited' : 'Favorite'}</span>
+              </button>
+
+              {/* Download Master Button */}
+              {video.type === 'mp4' ? (
+                <a
+                  href={video.url}
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                  className="fap-action-btn download-btn"
+                  title="Download in 4K"
+                >
+                  <Download size={16} />
+                  <span>Download</span>
+                  <span className="dl-badge">4K</span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  className="fap-action-btn download-btn"
+                  onClick={handleShare}
+                >
+                  <Download size={16} />
+                  <span>Download</span>
+                </button>
+              )}
+
+              {/* Share Button */}
+              <button
+                type="button"
+                className="fap-action-btn share-btn"
+                onClick={handleShare}
+                title="Share video link"
+              >
+                <Share2 size={16} />
+                <span>Share</span>
+              </button>
+
+              {/* Report Button */}
+              <button
+                type="button"
+                className="fap-action-btn flag-btn"
+                onClick={handleFlag}
+                title="Report Video"
+              >
+                <Flag size={15} />
+                <span>Report</span>
+              </button>
+            </div>
+
+            {/* Notification Toasts */}
+            {showShareToast && (
+              <div className="fap-toast-alert success">
+                <Check size={15} />
+                <span>Video stream URL copied to clipboard!</span>
+              </div>
+            )}
+
+            {showFlagToast && (
+              <div className="fap-toast-alert info">
+                <ShieldCheck size={15} />
+                <span>Report received. Our moderation team will review this screening.</span>
+              </div>
             )}
           </div>
 
-          {showShareToast && (
-            <div className="share-toast-banner mini">
-              <Check size={14} />
-              <span>Direct Link Copied!</span>
+          {/* Performer / Studio Profile Block */}
+          <div className="faphouse-creator-card">
+            <div className="creator-profile-info">
+              <img 
+                src={video.channel.avatar} 
+                alt={video.channel.name} 
+                className="fap-creator-avatar" 
+              />
+              <div className="creator-details-box">
+                <div className="creator-title-row">
+                  <h3 className="creator-name">{video.channel.name}</h3>
+                  {video.channel.verified && (
+                    <CheckCircle2 size={16} className="creator-verified-icon" />
+                  )}
+                  <span className="verified-pill">VERIFIED CREATOR</span>
+                </div>
+                <div className="creator-stats-line">
+                  <span>{video.channel.subscribers} Subscribers</span>
+                  <span className="dot">•</span>
+                  <span>48 Releases</span>
+                  <span className="dot">•</span>
+                  <span className="rank-text">Top 1% Creator</span>
+                </div>
+              </div>
             </div>
-          )}
-        </aside>
 
-        {/* Column 2: Storyboard Timeline & Audience Reviews (Center) */}
-        <main className="studio-col-center">
-          {/* Header Title */}
-          <div className="center-header-box">
-            <div className="center-tags-row">
-              <span className="center-category-badge">{video.category}</span>
-              <span className="center-release-badge">{video.badge}</span>
-              <span className="center-views-badge"><Eye size={13} /> {video.views}</span>
+            <div className="creator-cta-buttons">
+              <button
+                type="button"
+                className={`fap-subscribe-btn ${isSubscribed ? 'is-subscribed' : ''}`}
+                onClick={() => setIsSubscribed(!isSubscribed)}
+              >
+                {isSubscribed ? <Check size={15} /> : <Sparkles size={15} />}
+                <span>{isSubscribed ? 'Subscribed' : '+ Follow Studio'}</span>
+              </button>
+
+              <button
+                type="button"
+                className="fap-vip-btn"
+                onClick={handleShare}
+              >
+                <Star size={14} fill="#fbbf24" color="#fbbf24" />
+                <span>Join VIP</span>
+              </button>
             </div>
-
-            <h1 className="center-video-title">{video.title}</h1>
-            <p className="center-synopsis-text">{video.description}</p>
           </div>
 
-          {/* Interactive Scene Storyboard (New in Layout 2) */}
-          <section className="storyboard-section">
-            <div className="storyboard-header">
-              <div className="story-title-row">
-                <Clock size={16} className="text-cyan" />
-                <h4>Interactive Scene Storyboard</h4>
-              </div>
-              <span className="story-count">Select Scene Cue</span>
-            </div>
-
-            <div className="storyboard-cards-scroll">
-              {(video.timestamps || [
-                { time: "0:00", title: "Act I: Opening" },
-                { time: "3:20", title: "Act II: Conflict" },
-                { time: "7:45", title: "Act III: Climax" }
-              ]).map((scene, idx) => (
-                <div 
-                  key={idx}
-                  className={`storyboard-cue-card ${activeChapterIdx === idx ? 'active-cue' : ''}`}
-                  onClick={() => setActiveChapterIdx(idx)}
-                >
-                  <div className="cue-thumb-box">
-                    <img src={video.thumbnail} alt={scene.title} />
-                    <span className="cue-time">{scene.time}</span>
-                  </div>
-                  <div className="cue-info">
-                    <span className="cue-label">SCENE 0{idx + 1}</span>
-                    <h5 className="cue-title">{scene.title}</h5>
-                  </div>
-                </div>
+          {/* Clickable Tags & Categories Bar */}
+          <div className="faphouse-tags-wrapper">
+            <div className="tags-title">Tags & Niches:</div>
+            <div className="tags-pill-row">
+              <span className="fap-tag-pill highlight">#{video.category}</span>
+              <span className="fap-tag-pill">#4K Ultra HD</span>
+              <span className="fap-tag-pill">#High Definition</span>
+              {(video.tags || ["CGI", "SciFi", "Blender", "StudioMaster", "60FPS"]).map((tag, idx) => (
+                <span key={idx} className="fap-tag-pill">#{tag}</span>
               ))}
+              <span className="fap-tag-pill">#Dolby Atmos</span>
+              <span className="fap-tag-pill">#Exclusive</span>
             </div>
-          </section>
+          </div>
 
-          {/* Audience Review & Critique Section (5-Star Rating) */}
-          <section className="critique-reviews-section">
-            <div className="critique-header">
-              <div className="critique-title-group">
-                <Star size={18} fill="#f59e0b" color="#f59e0b" />
-                <h3>Audience Reviews & Critiques</h3>
-              </div>
-              <span className="critique-score-badge">4.9 / 5.0 (Verified)</span>
-            </div>
-
-            {/* Post Review Form with Star Picker */}
-            <form className="write-critique-form" onSubmit={handlePostReview}>
-              <div className="rating-picker-row">
-                <span className="rate-label">Your Film Score:</span>
-                <div className="star-buttons-group">
-                  {[1, 2, 3, 4, 5].map((starVal) => (
-                    <button
-                      key={starVal}
-                      type="button"
-                      className={`star-pick-btn ${userRating >= starVal ? 'selected' : ''}`}
-                      onClick={() => setUserRating(starVal)}
-                      aria-label={`Rate ${starVal} Stars`}
-                    >
-                      <Star size={18} fill={userRating >= starVal ? '#f59e0b' : 'none'} color="#f59e0b" />
-                    </button>
-                  ))}
+          {/* Expandable Video Description */}
+          <div className="faphouse-desc-card">
+            <h4 className="desc-section-title">Video Description & Production Credits</h4>
+            <div className={`desc-content ${isDescExpanded ? 'expanded' : 'clamped'}`}>
+              <p>{video.description}</p>
+              {isDescExpanded && (
+                <div className="desc-extra-info">
+                  <p>
+                    Produced and rendered using open-source visual pipeline tools in DCI-P3 wide color space. 
+                    Includes uncompressed spatial sound design, stereoscopic depth maps, and dynamic lighting rendering.
+                  </p>
+                  <div className="desc-meta-table">
+                    <div className="meta-cell"><span>Resolution:</span> 3840 x 2160 (4K UHD)</div>
+                    <div className="meta-cell"><span>Aspect Ratio:</span> 16:9 Standard Wide</div>
+                    <div className="meta-cell"><span>Encoding:</span> H.264 / AAC 320kbps</div>
+                    <div className="meta-cell"><span>Content Rating:</span> All Audiences</div>
+                  </div>
                 </div>
-                <span className="star-number">{userRating} of 5 Stars</span>
+              )}
+            </div>
+
+            <button
+              type="button"
+              className="desc-expand-btn"
+              onClick={() => setIsDescExpanded(!isDescExpanded)}
+            >
+              <span>{isDescExpanded ? 'Show Less' : 'Show Full Description'}</span>
+              {isDescExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+            </button>
+          </div>
+
+          {/* Tube-Style Community Comments */}
+          <div className="faphouse-comments-card">
+            <div className="comments-header-bar">
+              <div className="comments-count-title">
+                <MessageSquare size={18} className="comment-icon" />
+                <h3>{commentsList.length} Comments</h3>
               </div>
 
-              <div className="review-textarea-wrapper">
-                <textarea
-                  placeholder="Write your review, cinematography critique, or film analysis..."
-                  value={reviewText}
-                  onChange={(e) => setReviewText(e.target.value)}
-                  className="critique-textarea"
-                  rows={3}
-                />
-                <button 
-                  type="submit" 
-                  className="submit-critique-btn"
-                  disabled={!reviewText.trim()}
+              <div className="comments-sort-pills">
+                <button
+                  type="button"
+                  className={`sort-pill ${commentSort === 'top' ? 'active' : ''}`}
+                  onClick={() => setCommentSort('top')}
                 >
-                  <Send size={14} />
-                  <span>Publish Critique</span>
+                  Top Comments
                 </button>
+                <button
+                  type="button"
+                  className={`sort-pill ${commentSort === 'newest' ? 'active' : ''}`}
+                  onClick={() => setCommentSort('newest')}
+                >
+                  Newest
+                </button>
+              </div>
+            </div>
+
+            {/* Comment Composer */}
+            <form className="fap-comment-form" onSubmit={handleAddComment}>
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                alt="Your Avatar"
+                className="fap-user-avatar"
+              />
+              <div className="comment-input-cluster">
+                <textarea
+                  placeholder="Add a public comment or review this release..."
+                  value={newCommentText}
+                  onChange={(e) => setNewCommentText(e.target.value)}
+                  className="fap-comment-textarea"
+                  rows={2}
+                />
+                <div className="comment-form-actions">
+                  <span className="comment-guideline">Be respectful to creators and members</span>
+                  <button
+                    type="submit"
+                    className="fap-post-comment-btn"
+                    disabled={!newCommentText.trim()}
+                  >
+                    <Send size={14} />
+                    <span>Comment</span>
+                  </button>
+                </div>
               </div>
             </form>
 
-            {/* Reviews List */}
-            <div className="reviews-feed">
-              {reviewsList.map((rev) => (
-                <div key={rev.id} className="critique-card">
-                  <img src={rev.avatar} alt={rev.author} className="reviewer-avatar" />
-                  <div className="critique-body">
-                    <div className="reviewer-header">
-                      <div>
-                        <span className="reviewer-name">{rev.author}</span>
-                        <span className="reviewer-date">• {rev.date}</span>
-                      </div>
-                      <div className="review-stars-display">
-                        {[...Array(rev.rating)].map((_, i) => (
-                          <Star key={i} size={13} fill="#f59e0b" color="#f59e0b" />
-                        ))}
-                      </div>
+            {/* Comments Feed */}
+            <div className="fap-comments-feed">
+              {commentsList.map((comm) => (
+                <div key={comm.id} className="fap-comment-item">
+                  <img src={comm.avatar} alt={comm.user} className="comment-author-avatar" />
+                  <div className="comment-item-body">
+                    <div className="comment-item-top">
+                      <span className="comment-author-name">{comm.user}</span>
+                      <span className="comment-time-stamp">• {comm.time}</span>
                     </div>
-                    <p className="reviewer-comment">{rev.text}</p>
-                    <div className="reviewer-footer">
-                      <span className="helpful-tag">Helpful ({rev.likes})</span>
+                    <p className="comment-item-text">{comm.text}</p>
+                    <div className="comment-item-actions">
+                      <button type="button" className="comment-action-link">
+                        <ThumbsUp size={12} />
+                        <span>{comm.likes || 12}</span>
+                      </button>
+                      <button type="button" className="comment-action-link">
+                        <ThumbsDown size={12} />
+                      </button>
+                      <button type="button" className="comment-action-link reply-link">
+                        Reply
+                      </button>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          </section>
-        </main>
+          </div>
+        </div>
 
-        {/* Column 3: Recommended Playlist Queue (Right) */}
-        <aside className="studio-col-queue">
-          <div className="studio-queue-header">
-            <h4><Radio size={15} className="pulse-red" /> Director's Reel Queue</h4>
-            <span className="queue-pill">{relatedVideos.length} Next</span>
+        {/* ===================================================================
+            RIGHT COLUMN (SECONDARY): Faphouse Related / Up Next Sidebar
+            =================================================================== */}
+        <aside className="faphouse-sidebar-col">
+          {/* Sidebar Header with Autoplay Toggle */}
+          <div className="faphouse-sidebar-header">
+            <h3 className="sidebar-section-heading">Up Next & Related Videos</h3>
+            <div className="autoplay-toggle-wrapper">
+              <span className="autoplay-label">Autoplay</span>
+              <button
+                type="button"
+                className={`autoplay-switch ${autoplayNext ? 'on' : 'off'}`}
+                onClick={() => setAutoplayNext(!autoplayNext)}
+                aria-label="Toggle Autoplay"
+              >
+                <span className="switch-handle"></span>
+              </button>
+            </div>
           </div>
 
-          <div className="studio-queue-list">
+          {/* Continuous Vertical Stack of Horizontal Cards */}
+          <div className="faphouse-related-list">
             {relatedVideos.map((item) => (
-              <div 
-                key={item.id} 
-                className="studio-queue-item"
+              <article
+                key={item.id}
+                className="fap-related-card"
                 onClick={() => onSelectVideo(item)}
               >
-                <div className="queue-thumb-box">
-                  <img src={item.thumbnail} alt={item.title} />
-                  <span className="queue-duration">{item.duration}</span>
-                  <div className="queue-hover-play">
-                    <Play fill="#fff" size={16} />
+                {/* Thumbnail Frame */}
+                <div className="fap-card-thumb-frame">
+                  <img src={item.thumbnail} alt={item.title} loading="lazy" />
+                  <span className="fap-thumb-duration">{item.duration}</span>
+                  <span className="fap-thumb-quality">{item.badge || 'HD'}</span>
+
+                  <div className="fap-thumb-hover-overlay">
+                    <div className="fap-mini-play-bubble">
+                      <Play fill="#fff" size={15} />
+                    </div>
                   </div>
                 </div>
-                <div className="queue-text-box">
-                  <span className="queue-cat">{item.category}</span>
-                  <h5 className="queue-title">{item.title}</h5>
-                  <span className="queue-channel">{item.channel.name}</span>
+
+                {/* Card Content */}
+                <div className="fap-card-info">
+                  <h4 className="fap-card-title">{item.title}</h4>
+                  <div className="fap-card-author">
+                    <span>{item.channel.name}</span>
+                    {item.channel.verified && (
+                      <CheckCircle2 size={12} className="card-verified-mini" />
+                    )}
+                  </div>
+                  <div className="fap-card-stats-line">
+                    <span>{item.views} views</span>
+                    <span className="dot">•</span>
+                    <span className="fap-pct-rating">98% ★</span>
+                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </aside>

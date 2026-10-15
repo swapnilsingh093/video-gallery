@@ -5,15 +5,40 @@ export default function GalleryLayoutTwo({
   videos,
   onSelectVideo,
   watchlist,
-  onToggleWatchlist
+  onToggleWatchlist,
+  activeCategory = 'All',
+  setActiveCategory,
+  searchQuery = '',
+  setSearchQuery,
+  showWatchlistOnly = false,
+  setShowWatchlistOnly
 }) {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [localCategory, setLocalCategory] = useState('All');
+  const currentCategory = activeCategory || localCategory;
+  const setCategory = setActiveCategory || setLocalCategory;
 
   const categories = ["All", "Sci-Fi & Cinema", "Animation", "Nature & Space", "Tech & Future", "Music & Lofi"];
 
-  const filteredVideos = activeCategory === 'All'
-    ? videos
-    : videos.filter(v => v.category === activeCategory);
+  // Filter videos by category, search query, and watchlist
+  let filteredVideos = videos;
+
+  if (showWatchlistOnly) {
+    filteredVideos = filteredVideos.filter(v => watchlist.includes(v.id));
+  }
+
+  if (currentCategory !== 'All') {
+    filteredVideos = filteredVideos.filter(v => v.category === currentCategory);
+  }
+
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    filteredVideos = filteredVideos.filter(v => 
+      v.title.toLowerCase().includes(q) || 
+      v.description.toLowerCase().includes(q) ||
+      v.category.toLowerCase().includes(q) ||
+      v.channel.name.toLowerCase().includes(q)
+    );
+  }
 
   // Chunk videos into sets of 4 for each Bento section
   const chunks = [];
